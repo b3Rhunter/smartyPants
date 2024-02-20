@@ -1,0 +1,216 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  font-family: 'Arial', sans-serif;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #252527;
+  color: #333;
+}
+
+.chat-input {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding-bottom: 0;
+  background-color: rgba(255, 255, 255, 0.205);
+  backdrop-filter: blur(10px);
+  box-shadow: inset 0px 0px 1000px 1000px #0000009f;
+  z-index: 99;
+}
+
+.chat-bar {
+  flex-grow: 1;
+  padding: 10px;
+  padding-top: 22px;
+  padding-left: 20px;
+  border: none;
+  background-color: transparent;
+  color: white; 
+  resize: none; 
+  overflow: auto; 
+  height: 50px;
+  max-height: 75vh;
+}
+
+.send-btn {
+  background-color: #252527;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  margin: 5px;
+  margin-right: 20px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chat-history {
+  overflow-y: auto;
+  width: 100%;
+  max-height: 80vh;
+  padding: 20px;
+  margin-bottom: 60px;
+}
+
+.message {
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.user {
+  align-self: flex-end;
+  background-color: #ebebeb;
+  word-wrap: break-word;
+}
+
+.assistant {
+  align-self: flex-start;
+  background-color: #ffffff2f;
+  color: rgba(255, 255, 255, 0.781);
+  word-wrap: break-word;
+}
+
+.message p {
+  font-size: 16px; 
+  line-height: 1.6; 
+  max-width: 60ch; 
+  text-align: left; 
+  margin-bottom: 1em; 
+  white-space: pre-wrap; 
+}
+
+.connect button {
+  background-color: #ffffff3f;
+  color: white;
+  border: none;
+  border-radius: 5px; 
+  padding: 10px 20px;
+  font-size: 16px; 
+  font-weight: bold; 
+  cursor: pointer; 
+  transition: background-color 0.3s, transform 0.2s;
+  outline: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  animation: bounce 2s infinite; 
+}
+
+.connect button:hover, .connect button:active, .connect button:focus {
+  animation: none;
+  background-color: #ffffff7d;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.connect button:hover {
+  transform: translateY(-2px);
+}
+
+.connect button:active {
+  background-color: #ffffff3f; 
+  transform: translateY(1px);
+}
+
+.connect button:focus {
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.4), 0 0 0 4px #fefefe74;
+}
+
+
+
+.loading-spinner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100svh;
+  height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  backdrop-filter: blur(10px);
+  z-index: 999;
+}
+
+.thinking {
+  color: #aaa; /* Lighter text color for thinking status */
+}
+
+.ellipsis span {
+  opacity: 0; /* Start with dots hidden */
+  animation: dotBlink 1.2s infinite; /* Apply animation to each dot */
+}
+
+.ellipsis span:nth-child(1) {
+  animation-delay: 0s; /* No delay for the first dot */
+}
+
+.ellipsis span:nth-child(2) {
+  animation-delay: 0.4s; /* Delay appearance of the second dot */
+}
+
+.ellipsis span:nth-child(3) {
+  animation-delay: 0.8s; /* Delay appearance of the third dot */
+}
+
+@keyframes dotBlink {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+
+
+.spinner {
+  animation: spin 1s linear infinite;
+  font-size: 2rem; 
+  color: white;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-15px);
+  }
+  60% {
+    transform: translateY(-7px);
+  }
+}
+
+
+pre {
+  background-color: #171817; 
+  color: #00ff22;
+  padding: 10px;
+  border-radius: 5px;
+  overflow-x: auto;
+}
+
+code {
+  font-family: 'Courier New', Courier, monospace;
+}
