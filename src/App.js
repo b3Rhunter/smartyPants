@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import OpenAI from 'openai';
 import { ethers } from 'ethers';
-import { FaSpinner } from 'react-icons/fa';
 import { IoIosSend } from "react-icons/io";
 
 const openai = new OpenAI({
@@ -70,9 +69,9 @@ function App() {
     setChat(currentChat => [...currentChat, newUserPrompt]);
     setPrompt('');
 
-    setIsThinking(true); // Toggle thinking state on
+    setIsThinking(true);
 
-    const systemMessage = `You are a helpful assistant with an emphasis on writing code.`;
+    const systemMessage = `You are a helpful assistant.`;
 
     try {
       const completion = await openai.chat.completions.create({
@@ -83,17 +82,14 @@ function App() {
         model: 'gpt-4',
       });
 
-      // Directly update chat with AI's response after parsing
       const newAiResponse = { role: 'assistant', content: completion.choices[0].message.content };
       setChat(currentChat => [...currentChat, newAiResponse]);
     } catch (error) {
       console.error('Failed to generate', error);
     } finally {
-      setIsThinking(false); // Toggle thinking state off
+      setIsThinking(false);
     }
   };
-
-
 
   const handleKeyPress = (event) => {
     if (event.key === 'Enter' && !event.shiftKey) {
@@ -148,13 +144,13 @@ function App() {
             ))}
             <div ref={chatEndRef} />
             {isThinking && (
-  <div className="message thinking">
-    thinking
-    <span className="ellipsis">
-      <span>.</span><span>.</span><span>.</span>
-    </span>
-  </div>
-)}
+              <div className="message thinking">
+                thinking
+                <span className="ellipsis">
+                  <span>.</span><span>.</span><span>.</span>
+                </span>
+              </div>
+            )}
 
           </div>
 
